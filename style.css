@@ -1,30 +1,5 @@
-/* =========================================================
-   WAQAS PORTFOLIO
-   ADVANCED FUTURISTIC CSS
-   ========================================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
-
-
-/* =========================================================
-   ROOT
-   ========================================================= */
-
-:root {
-    --cyan: #00eaff;
-    --blue: #0066ff;
-    --purple: #8b5cf6;
-    --green: #00ff9d;
-    --dark: #050811;
-    --card: rgba(12, 19, 32, 0.78);
-    --text: #e8f7ff;
-    --muted: #9ba9bc;
-}
-
-
-/* =========================================================
-   RESET
-   ========================================================= */
+```css
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;500;600&display=swap');
 
 * {
     margin: 0;
@@ -32,1237 +7,220 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    min-height: 100vh;
-
-    font-family: "Poppins", sans-serif;
-
-    color: var(--text);
-
     background:
-        radial-gradient(circle at 15% 20%, rgba(0, 234, 255, .12), transparent 25%),
-        radial-gradient(circle at 85% 60%, rgba(139, 92, 246, .12), transparent 25%),
-        radial-gradient(circle at 50% 100%, rgba(0, 255, 157, .08), transparent 30%),
-        #050811;
-
+        radial-gradient(circle at 20% 20%, #003b4d, transparent 30%),
+        radial-gradient(circle at 80% 80%, #24104d, transparent 30%),
+        #030712;
+    color: #e8faff;
+    font-family: Poppins, sans-serif;
+    line-height: 1.8;
     overflow-x: hidden;
-
-    position: relative;
 }
 
-
-/* =========================================================
-   MOVING TECHNOLOGY GRID
-   ========================================================= */
-
+/* Animated grid */
 body::before {
     content: "";
-
     position: fixed;
-
     inset: 0;
-
-    pointer-events: none;
-
-    z-index: -3;
-
     background-image:
-        linear-gradient(rgba(0, 234, 255, .035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 234, 255, .035) 1px, transparent 1px);
-
-    background-size: 50px 50px;
-
-    animation: gridMove 18s linear infinite;
+        linear-gradient(#00f7ff12 1px, transparent 1px),
+        linear-gradient(90deg, #00f7ff12 1px, transparent 1px);
+    background-size: 45px 45px;
+    animation: grid 12s linear infinite;
+    z-index: -1;
 }
 
-
-@keyframes gridMove {
-
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 50px 50px;
+@keyframes grid {
+    to {
+        background-position: 45px 45px;
     }
 }
 
-
-/* =========================================================
-   SCANLINE EFFECT
-   ========================================================= */
-
-body::after {
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: 999;
-
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0px,
-            transparent 3px,
-            rgba(0, 234, 255, .018) 4px
-        );
-
-    opacity: .35;
-}
-
-
-/* =========================================================
-   MAIN TITLE
-   ========================================================= */
-
-body > h1 {
-
-    width: fit-content;
-
-    margin: 55px auto 35px;
-
-    position: relative;
-
-    font-family: "Orbitron", sans-serif;
-
-    font-size: clamp(28px, 5vw, 55px);
-
-    font-weight: 800;
-
-    letter-spacing: 3px;
-
+/* Main title */
+h1 {
+    margin: 60px auto 30px;
     text-align: center;
-
-    color: white;
-
-    background: linear-gradient(
-        90deg,
-        var(--cyan),
-        white,
-        var(--purple),
-        var(--cyan)
-    );
-
-    background-size: 300%;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-
-    animation:
-        titleGradient 5s linear infinite,
-        titleEntrance 1s ease forwards;
-
-    text-shadow:
-        0 0 15px rgba(0, 234, 255, .5);
+    font-family: Orbitron;
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #fff;
+    text-shadow: 0 0 15px #00f7ff, 0 0 40px #0077ff;
+    animation: glow 2s infinite alternate;
 }
 
-
-@keyframes titleGradient {
-
-    0% {
-        background-position: 0%;
-    }
-
-    100% {
-        background-position: 300%;
-    }
-}
-
-
-@keyframes titleEntrance {
-
-    from {
-        opacity: 0;
-        transform: translateY(-40px) scale(.9);
-    }
-
+@keyframes glow {
     to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+        text-shadow: 0 0 30px #00f7ff, 0 0 60px #8a2be2;
     }
 }
 
-
-/* glowing line under H1 */
-
-body > h1::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 70%;
-
-    height: 3px;
-
-    bottom: -15px;
-
-    left: 15%;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--cyan),
-        var(--purple),
-        var(--cyan),
-        transparent
-    );
-
-    box-shadow:
-        0 0 10px var(--cyan),
-        0 0 25px var(--cyan);
-
-    animation: linePulse 2s ease-in-out infinite;
-}
-
-
-@keyframes linePulse {
-
-    0%,
-    100% {
-        opacity: .4;
-        transform: scaleX(.7);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scaleX(1);
-    }
-}
-
-
-/* =========================================================
-   HERO BACKGROUND
-   ========================================================= */
-
-body > div:nth-of-type(1) {
-
-    position: relative;
-
-    width: 92%;
-    max-width: 1200px;
-
-    height: 500px;
-
-    margin: 30px auto 0;
-
+/* Background image */
+body > div:first-of-type {
+    width: 90%;
+    max-width: 1000px;
+    height: 380px;
+    margin: 60px auto 20px;
+    border-radius: 25px;
     overflow: hidden;
-
-    border-radius: 30px;
-
-    border: 1px solid rgba(0, 234, 255, .4);
-
-    box-shadow:
-        0 0 20px rgba(0, 234, 255, .15),
-        0 0 80px rgba(0, 102, 255, .08),
-        inset 0 0 80px rgba(0, 0, 0, .7);
-
-    animation: heroEntrance 1.3s ease;
+    border: 1px solid #00f7ff55;
+    box-shadow: 0 0 35px #00f7ff22;
 }
 
-
-@keyframes heroEntrance {
-
-    from {
-        opacity: 0;
-        transform: scale(.94);
-        filter: blur(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-        filter: blur(0);
-    }
-}
-
-
-/* background image */
-
-body > div:nth-of-type(1) img {
-
+body > div:first-of-type img {
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
-    display: block;
-
-    filter:
-        brightness(38%)
-        contrast(120%)
-        saturate(130%);
-
-    transform: scale(1.02);
-
-    transition: 1s ease;
+    opacity: .55;
+    transition: .6s;
 }
 
-
-body > div:nth-of-type(1):hover img {
-
+body > div:first-of-type:hover img {
     transform: scale(1.08);
-
-    filter:
-        brightness(45%)
-        contrast(120%)
-        saturate(140%);
 }
 
-
-/* cinematic overlay */
-
-body > div:nth-of-type(1)::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 2;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0, 0, 0, .15),
-            rgba(3, 8, 18, .85)
-        );
-
-    pointer-events: none;
-}
-
-
-/* animated neon border */
-
-body > div:nth-of-type(1)::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: -2px;
-
-    border-radius: 30px;
-
-    padding: 2px;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent,
-            var(--cyan),
-            transparent,
-            var(--purple),
-            transparent
-        );
-
-    background-size: 300% 300%;
-
-    animation: borderFlow 6s linear infinite;
-
-    mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-
-    mask-composite: exclude;
-
-    pointer-events: none;
-
-    z-index: 10;
-}
-
-
-@keyframes borderFlow {
-
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-
-/* =========================================================
-   CSS-ONLY LAPTOP DECORATION
-   ========================================================= */
-
-body > div:nth-of-type(1) {
-    isolation: isolate;
-}
-
-
-/* left futuristic laptop */
-
-body > div:nth-of-type(1) .nothing {
-    display: none;
-}
-
-
-/* Create decorative tech panel */
-
-body > div:nth-of-type(1) {
-    --tech-border: rgba(0, 234, 255, .25);
-}
-
-
-/* =========================================================
-   PROFILE IMAGE
-   ========================================================= */
-
+/* Profile picture */
 body > div:nth-of-type(2) {
-
     position: absolute;
-
-    z-index: 20;
-
-    top: 315px;
-
+    top: 200px;
     left: 50%;
-
+    transform: translateX(-50%);
     width: 190px;
     height: 190px;
-
-    transform: translateX(-50%);
-
-    padding: 6px;
-
+    padding: 5px;
     border-radius: 50%;
-
-    background:
-        conic-gradient(
-            from 0deg,
-            var(--cyan),
-            var(--blue),
-            var(--purple),
-            var(--cyan)
-        );
-
-    box-shadow:
-        0 0 20px var(--cyan),
-        0 0 50px rgba(0, 234, 255, .5),
-        0 0 100px rgba(139, 92, 246, .25);
-
-    animation:
-        profileFloat 4s ease-in-out infinite,
-        profileGlow 2.5s ease-in-out infinite;
-
+    background: linear-gradient(135deg, #00f7ff, #8a2be2, #ff00cc);
+    box-shadow: 0 0 35px #00f7ff;
+    animation: float 3s ease-in-out infinite;
 }
-
-
-/* profile photo */
 
 body > div:nth-of-type(2) img {
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
-
     border-radius: 50%;
-
-    border: 5px solid #070b14;
-
-    display: block;
-
-    transition: .6s ease;
+    border: 3px solid #030712;
 }
 
-
-body > div:nth-of-type(2):hover img {
-
-    transform: scale(1.08);
-
-    filter:
-        brightness(1.1)
-        saturate(1.2);
-}
-
-
-@keyframes profileFloat {
-
-    0%,
-    100% {
-        transform: translateX(-50%) translateY(0);
-    }
-
+@keyframes float {
     50% {
-        transform: translateX(-50%) translateY(-14px);
+        transform: translate(-50%, -12px);
     }
 }
 
-
-@keyframes profileGlow {
-
-    0%,
-    100% {
-        box-shadow:
-            0 0 20px var(--cyan),
-            0 0 50px rgba(0, 234, 255, .3);
-    }
-
-    50% {
-        box-shadow:
-            0 0 35px var(--cyan),
-            0 0 80px rgba(139, 92, 246, .5);
-    }
-}
-
-
-/* =========================================================
-   ORBIT AROUND PROFILE
-   ========================================================= */
-
-body > div:nth-of-type(2)::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: -18px;
-
-    border: 1px dashed rgba(0, 234, 255, .5);
-
-    border-radius: 50%;
-
-    animation: orbit 8s linear infinite;
-}
-
-
-body > div:nth-of-type(2)::after {
-
-    content: "DEV • CODE • SECURITY";
-
-    position: absolute;
-
-    white-space: nowrap;
-
-    left: 50%;
-
-    bottom: -45px;
-
-    transform: translateX(-50%);
-
-    font-family: "Orbitron", sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    color: var(--cyan);
-
-    opacity: .8;
-}
-
-
-@keyframes orbit {
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-/* =========================================================
-   INTRO CARD
-   ========================================================= */
-
+/* Intro */
 body > div:nth-of-type(3) {
-
-    position: relative;
-
     width: 90%;
-    max-width: 1050px;
-
-    margin: 80px auto 60px;
-
-    padding: 35px 40px;
-
+    max-width: 900px;
+    margin: 80px auto 40px;
+    padding: 30px;
     text-align: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(14, 24, 40, .9),
-            rgba(5, 10, 20, .9)
-        );
-
-    backdrop-filter: blur(18px);
-
-    border: 1px solid rgba(0, 234, 255, .3);
-
-    border-radius: 25px;
-
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, .4),
-        inset 0 0 40px rgba(0, 234, 255, .03);
-
-    overflow: hidden;
-
-    animation: cardReveal 1.5s ease;
+    background: #ffffff08;
+    backdrop-filter: blur(15px);
+    border: 1px solid #00f7ff33;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #00f7ff12;
 }
 
-
-@keyframes cardReveal {
-
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* moving light */
-
-body > div:nth-of-type(3)::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 250px;
-    height: 250px;
-
-    background: var(--cyan);
-
-    filter: blur(100px);
-
-    opacity: .08;
-
-    top: -120px;
-    left: -100px;
-
-    animation: lightMove 8s ease-in-out infinite alternate;
-}
-
-
-@keyframes lightMove {
-
-    to {
-        left: 80%;
-        top: 60%;
-    }
-}
-
-
-body > div:nth-of-type(3) pre {
-
-    position: relative;
-
-    white-space: pre-wrap;
-
-    font-family: "Poppins", sans-serif;
-
-    font-size: clamp(15px, 2vw, 20px);
-
-    line-height: 2;
-
-    color: white;
-
-    z-index: 2;
-}
-
-
-body > div:nth-of-type(3) b {
-
-    color: var(--cyan);
-
-    text-shadow:
-        0 0 10px rgba(0, 234, 255, .5);
-}
-
-
-/* =========================================================
-   ALL HEADINGS
-   ========================================================= */
-
+/* Sections */
 h2 {
-
-    position: relative;
-
     width: 90%;
-    max-width: 1050px;
-
-    margin: 70px auto 25px;
-
-    padding: 18px 25px;
-
-    font-family: "Orbitron", sans-serif;
-
-    font-size: clamp(22px, 3vw, 34px);
-
-    color: white;
-
-    border-left: 5px solid var(--cyan);
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 234, 255, .08),
-            transparent
-        );
-
-    overflow: hidden;
-
-    animation: headingSlide 1s ease both;
+    max-width: 1000px;
+    margin: 55px auto 20px;
+    padding: 12px 20px;
+    font-family: Orbitron;
+    color: #00f7ff;
+    border-left: 4px solid #00f7ff;
+    text-shadow: 0 0 15px #00f7ff;
 }
-
-
-/* animated light through heading */
-
-h2::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: -100%;
-
-    width: 60%;
-
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.12),
-            transparent
-        );
-
-    transform: skewX(-20deg);
-
-    animation: headingShine 4s infinite;
-}
-
-
-@keyframes headingShine {
-
-    0% {
-        left: -100%;
-    }
-
-    40%,
-    100% {
-        left: 150%;
-    }
-}
-
-
-@keyframes headingSlide {
-
-    from {
-        opacity: 0;
-        transform: translateX(-60px);
-        filter: blur(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-        filter: blur(0);
-    }
-}
-
-
-/* =========================================================
-   H3
-   ========================================================= */
 
 h3 {
-
     width: 90%;
-    max-width: 1050px;
-
-    margin: 35px auto 15px;
-
-    font-family: "Orbitron", sans-serif;
-
-    font-size: 21px;
-
-    color: var(--cyan);
-
-    letter-spacing: 1px;
-
-    position: relative;
-
-    animation: h3Reveal 1s ease both;
+    max-width: 1000px;
+    margin: 30px auto 10px;
+    color: white;
+    transition: .3s;
 }
 
-
-h3::before {
-
-    content: "▸";
-
-    color: var(--green);
-
-    margin-right: 10px;
-
-    animation: cursorBlink 1s infinite;
+h3:hover {
+    color: #00f7ff;
+    transform: translateX(8px);
 }
-
-
-@keyframes cursorBlink {
-
-    0%,
-    50% {
-        opacity: 1;
-    }
-
-    51%,
-    100% {
-        opacity: .2;
-    }
-}
-
-
-@keyframes h3Reveal {
-
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
-/* =========================================================
-   PARAGRAPHS
-   ========================================================= */
 
 p {
-
     width: 90%;
-    max-width: 1050px;
-
-    margin: 0 auto 25px;
-
-    padding: 25px 30px;
-
-    color: var(--muted);
-
-    font-size: 16px;
-
-    line-height: 1.9;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(16, 25, 40, .85),
-            rgba(7, 12, 22, .9)
-        );
-
-    border: 1px solid rgba(255,255,255,.06);
-
-    border-radius: 16px;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.2);
-
-    transition:
-        transform .4s ease,
-        border .4s ease,
-        box-shadow .4s ease;
-}
-
-
-p:hover {
-
-    transform:
-        translateY(-8px)
-        perspective(500px)
-        rotateX(1deg);
-
-    border-color: rgba(0,234,255,.4);
-
-    box-shadow:
-        0 20px 50px rgba(0,234,255,.08),
-        inset 0 0 20px rgba(0,234,255,.03);
-}
-
-
-p b {
-
-    color: var(--cyan);
-
-    text-shadow:
-        0 0 8px rgba(0,234,255,.3);
-}
-
-
-/* =========================================================
-   SKILL GRID
-   ========================================================= */
-
-ul {
-
-    width: 90%;
-    max-width: 1050px;
-
-    margin: 20px auto 45px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(180px, 1fr));
-
-    gap: 18px;
-
-    list-style: none;
-}
-
-
-/* individual skill cards */
-
-li {
-
-    position: relative;
-
-    padding: 22px 15px;
-
-    text-align: center;
-
-    color: #dcecff;
-
-    font-family: "Orbitron", sans-serif;
-
-    font-size: 13px;
-
-    letter-spacing: .5px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18, 29, 47, .9),
-            rgba(7, 13, 24, .9)
-        );
-
-    border: 1px solid rgba(0,234,255,.15);
-
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px;
+    color: #b7c5d0;
+    background: #ffffff06;
+    border: 1px solid #ffffff12;
     border-radius: 15px;
-
-    overflow: hidden;
-
-    transition:
-        .4s ease;
-
-    animation: skillAppear .8s ease both;
-}
-
-
-li::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 80px;
-    height: 80px;
-
-    border-radius: 50%;
-
-    background: var(--cyan);
-
-    filter: blur(45px);
-
-    opacity: 0;
-
     transition: .4s;
 }
 
+p:hover {
+    transform: translateY(-5px);
+    border-color: #00f7ff55;
+}
+
+/* Skills */
+ul {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+li {
+    padding: 15px;
+    background: #ffffff08;
+    border: 1px solid #00f7ff22;
+    border-radius: 12px;
+    transition: .3s;
+}
+
+li::before {
+    content: "▸ ";
+    color: #00f7ff;
+}
 
 li:hover {
-
-    transform:
-        translateY(-10px)
-        scale(1.03);
-
-    border-color: var(--cyan);
-
-    color: var(--cyan);
-
-    box-shadow:
-        0 10px 30px rgba(0,234,255,.15),
-        0 0 20px rgba(0,234,255,.08);
+    transform: translateY(-6px);
+    border-color: #00f7ff;
+    box-shadow: 0 0 20px #00f7ff22;
 }
 
-
-li:hover::before {
-
-    opacity: .12;
-}
-
-
-@keyframes skillAppear {
-
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* =========================================================
-   PROJECT CARDS
-   ========================================================= */
-
-h3 + p {
-
-    border-left: 4px solid var(--blue);
-
-    position: relative;
-}
-
-
-h3 + p::before {
-
-    content: "</>";
-
-    position: absolute;
-
-    right: 20px;
-    top: 15px;
-
-    font-family: "Orbitron", sans-serif;
-
-    font-size: 30px;
-
-    color: rgba(0,234,255,.08);
-}
-
-
-/* =========================================================
-   GOAL SECTION
-   ========================================================= */
-
-body > h3:last-child {
-
-    width: fit-content;
-
-    max-width: 90%;
-
-    margin: 70px auto;
-
-    padding: 20px 35px;
-
+/* Last line */
+h3:last-child {
     text-align: center;
-
-    color: var(--cyan);
-
-    border: 1px solid var(--cyan);
-
-    border-radius: 50px;
-
-    font-size: 20px;
-
-    box-shadow:
-        0 0 20px rgba(0,234,255,.15);
-
-    animation:
-        sloganFloat 3s ease-in-out infinite,
-        sloganGlow 2s ease-in-out infinite alternate;
+    margin: 80px auto 50px;
+    font-family: Orbitron;
+    color: #00f7ff;
+    text-shadow: 0 0 20px #00f7ff;
 }
 
-
-@keyframes sloganFloat {
-
-    0%,
-    100% {
-        transform: translateY(0);
+/* Mobile */
+@media (max-width: 600px) {
+    body > div:first-of-type {
+        height: 280px;
     }
-
-    50% {
-        transform: translateY(-7px);
-    }
-}
-
-
-@keyframes sloganGlow {
-
-    from {
-        box-shadow: 0 0 10px rgba(0,234,255,.15);
-    }
-
-    to {
-        box-shadow:
-            0 0 30px rgba(0,234,255,.35),
-            0 0 70px rgba(139,92,246,.15);
-    }
-}
-
-
-/* =========================================================
-   SCROLLBAR
-   ========================================================= */
-
-::-webkit-scrollbar {
-
-    width: 9px;
-}
-
-
-::-webkit-scrollbar-track {
-
-    background: #03050a;
-}
-
-
-::-webkit-scrollbar-thumb {
-
-    background:
-        linear-gradient(
-            var(--cyan),
-            var(--purple)
-        );
-
-    border-radius: 10px;
-}
-
-
-::-webkit-scrollbar-thumb:hover {
-
-    box-shadow:
-        0 0 15px var(--cyan);
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 700px) {
-
-    body > h1 {
-
-        margin-top: 35px;
-
-        letter-spacing: 1px;
-    }
-
-
-    body > div:nth-of-type(1) {
-
-        width: 94%;
-
-        height: 380px;
-
-        border-radius: 20px;
-    }
-
 
     body > div:nth-of-type(2) {
-
-        width: 145px;
-
-        height: 145px;
-
-        top: 270px;
+        top: 165px;
+        width: 150px;
+        height: 150px;
     }
-
-
-    body > div:nth-of-type(3) {
-
-        width: 94%;
-
-        margin-top: 75px;
-
-        padding: 25px 18px;
-    }
-
-
-    h2 {
-
-        width: 94%;
-
-        font-size: 21px;
-
-        padding: 15px;
-    }
-
-
-    h3 {
-
-        width: 94%;
-
-        font-size: 17px;
-    }
-
 
     p {
-
-        width: 94%;
-
-        padding: 20px;
-
-        font-size: 14px;
+        padding: 18px;
     }
-
 
     ul {
-
-        width: 94%;
-
-        grid-template-columns: repeat(2, 1fr);
-
-        gap: 10px;
-    }
-
-
-    li {
-
-        font-size: 10px;
-
-        padding: 16px 7px;
+        grid-template-columns: 1fr;
     }
 }
-
-
-/* =========================================================
-   REDUCE MOTION FOR ACCESSIBILITY
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration: .01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        scroll-behavior: auto !important;
-    }
-}
+```
